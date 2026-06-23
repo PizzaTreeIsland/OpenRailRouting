@@ -48,8 +48,17 @@ public class SwitchTurnCostTask {
         for (RestrictionTagParser parser : restrictionTagParsers) {
             BooleanEncodedValue turnCostEnc = parser.getTurnRestrictionEnc();
             if (forbidden) {
-                tcs.set(turnCostEnc, fromEdge, viaNode, toEdge, true);
-                tcs.set(turnCostEnc, toEdge, viaNode, fromEdge, true);
+                try {
+                    tcs.set(turnCostEnc, fromEdge, viaNode, toEdge, true);
+                    tcs.set(turnCostEnc, toEdge, viaNode, fromEdge, true);
+                } catch (IllegalStateException e) {
+                    LOGGER.error(e.getMessage()
+                            + " Failed to set turn costs due to reaching turn cost storage "
+                            + "limit at via node " + viaNode + "(lat: "
+                            + baseGraph.getNodeAccess().getLat(viaNode)
+                            + ", lon: " + baseGraph.getNodeAccess().getLon(viaNode)
+                            + "). There might be too many ways connected to this node.");
+                }
             }
         }
     }
