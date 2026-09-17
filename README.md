@@ -72,7 +72,7 @@ If you have your own separate custom models directory, you do not have to recomp
 
 Please refer to the [GraphHopper documentation about custom models](https://github.com/graphhopper/graphhopper/blob/master/docs/core/custom-models.md) for a detailed explanation how custom models work. The following contains a few notes about differences between GraphHopper and OpenRailRouting.
 
-In addition to the encoded values supported by GraphHopper, OpenRailRouting can encoded the following encoded values per edge:
+In addition to the encoded values supported by GraphHopper, OpenRailRouting can encode the following encoded values per edge:
 
 * `voltage`: decimal (precision: 100 Volt), missing values are encoded as `0.0`
 * `frequency`: decimal (precision: 2.5 Hz), missing values are encoded as `0.0`
